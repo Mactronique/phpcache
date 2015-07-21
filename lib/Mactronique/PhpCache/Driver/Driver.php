@@ -8,7 +8,7 @@ interface Driver
      * Check if driver is usable
      * @throws DriverRequirementFailException
      */
-    public static function checkDriver();
+    public function checkDriver();
 
     /**
      * @return string Driver name

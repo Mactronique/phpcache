@@ -2,11 +2,13 @@
 
 namespace Mactronique\PhpCache\Driver\Driver;
 
+use Mactronique\PhpCache\Driver\Exception\DriverRequirementFailException;
+
 class XcacheDriver implements Driver
 {
     const NAME = 'xCache';
 
-    public static function checkDriver()
+    public function checkDriver()
     {
         if (!extension_loaded('xcache') || !function_exists("xcache_set")) {
             throw new DriverRequirementFailException("xCache extension not loaded", self::NAME);

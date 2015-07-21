@@ -2,11 +2,13 @@
 
 namespace Mactronique\PhpCache\Driver\Driver;
 
+use Mactronique\PhpCache\Driver\Exception\DriverRequirementFailException;
+
 class WincacheDriver implements Driver
 {
     const NAME = 'WinCache';
 
-    public static function checkDriver()
+    public function checkDriver()
     {
         if (!extension_loaded('wincache') || !function_exists("wincache_ucache_set")) {
             throw new DriverRequirementFailException("Wincache extension not loaded", self::NAME);
