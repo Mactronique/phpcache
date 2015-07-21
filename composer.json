@@ -1,0 +1,28 @@
+{
+    "name": "mactronique/phpcache",
+    "description": "Avanced cache manager",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jean-Baptiste Nahan",
+            "email": "jbnahan@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4",
+        "symfony/symfony-bundle": ">2.3",
+        "jms/serializer-bundle": "~0.13"
+    },
+    "require-dev": {
+        "atoum/atoum": "master-dev",
+        "atoum/atoum-bundle": "1.1.*@dev"
+    },
+    "autoload": {
+        "psr-0": { "": "lib" }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.x-dev"
+        }
+    }
+}
