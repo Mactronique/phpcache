@@ -1,8 +1,8 @@
 <?php
 
-namespace Mactronique\PhpCache\Driver\Driver;
+namespace Mactronique\PhpCache\Driver;
 
-use Mactronique\PhpCache\Driver\Exception\DriverRequirementFailException;
+use Mactronique\PhpCache\Exception\DriverRequirementFailException;
 
 class XcacheDriver implements Driver
 {

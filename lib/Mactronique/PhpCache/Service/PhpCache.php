@@ -2,9 +2,9 @@
 
 namespace Mactronique\PhpCache\Service;
 
-use Mactronique\PhpCache\Driver\Driver;
-use Mactronique\PhpCache\Driver\Exception\UnknowDriverException;
-use Mactronique\PhpCache\Driver\Exception\NoDriverException;
+use Mactronique\PhpCache\Driver;
+use Mactronique\PhpCache\Exception\UnknowDriverException;
+use Mactronique\PhpCache\Exception\NoDriverException;
 
 class PhpCache
 {

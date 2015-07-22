@@ -1,6 +1,6 @@
 <?php
 
-namespace Mactronique\PhpCache\Driver\Driver;
+namespace Mactronique\PhpCache\Driver;
 
 interface Driver
 {

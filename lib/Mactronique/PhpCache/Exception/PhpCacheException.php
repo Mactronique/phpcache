@@ -1,6 +1,6 @@
 <?php
 
-namespace Mactronique\PhpCache\Driver\Exception;
+namespace Mactronique\PhpCache\Exception;
 
 class PhpCacheException extends \Exception
 {
