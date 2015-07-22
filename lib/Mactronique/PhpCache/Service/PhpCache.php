@@ -82,15 +82,15 @@ class PhpCache
     private function getDriver($driverName = null)
     {
         if (null === $driverName) {
-            $driver = $this->determineDefaultDriver();
+            $driverName = $this->determineDefaultDriver();
         }
 
-        if (! $this->hasDriver($driver)) {
+        if (! $this->hasDriver($driverName)) {
             throw new UnknowDriverException("Error : not loaded driver '".$driver."'");
             
         }
 
-        return $this->drivers[$driver];
+        return $this->drivers[$driverName];
     }
 
     /**

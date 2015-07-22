@@ -68,7 +68,7 @@ class XcacheDriver implements Driver
      */
     public function remove($key)
     {
-        return wincache_ucache_delete($key);
+        return xcache_unset($key);
     }
 
     /**
@@ -76,7 +76,10 @@ class XcacheDriver implements Driver
      */
     public function clean()
     {
-        xcache_clear_cache(XC_TYPE_VAR);
+        $cnt = xcache_count(XC_TYPE_VAR);
+        for ($i=0; $i < $cnt; $i++) {
+            xcache_clear_cache(XC_TYPE_VAR, $i);
+        }
         return true;
     }
 }
