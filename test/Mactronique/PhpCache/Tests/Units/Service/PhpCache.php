@@ -1,0 +1,91 @@
+<?php
+
+namespace Mactronique\PhpCache\Tests\Units\Service;
+
+use atoum;
+use mock;
+
+class PhpCache extends atoum
+{
+    public function testInit()
+    {
+        $driver = new mock\Mactronique\PhpCache\Driver\Driver;
+        $driver->getMockController()->checkDriver = true;
+        $driver->getMockController()->getName = 'test';
+
+        $service = new \Mactronique\PhpCache\Service\PhpCache();
+
+        $this->variable($service->registerDriver($driver))->isNull();
+
+        $this->boolean($service->hasDriver('test'))->isTrue();
+        $this->boolean($service->hasDriver('xCache'))->isFalse();
+    }
+
+    public function testInitNoDriver()
+    {
+
+        $service = new \Mactronique\PhpCache\Service\PhpCache();
+
+        $this->boolean($service->hasDriver('xCache'))->isFalse();
+
+        $this->exception(function () use ($service) {
+            $service->get('key');
+        })->isInstanceOf('Mactronique\PhpCache\Exception\NoDriverException');
+           
+    }
+
+    public function testGet()
+    {
+        $driver = new mock\Mactronique\PhpCache\Driver\Driver;
+        $driver->getMockController()->checkDriver = true;
+        $driver->getMockController()->getName = 'test';
+        $driver->getMockController()->get = 'valeur';
+
+        $service = new \Mactronique\PhpCache\Service\PhpCache();
+
+        $this->variable($service->registerDriver($driver))->isNull();
+
+        $this->string($service->get('key'))->isEqualTo('valeur');
+
+        $this->mock($driver)->call('get')->once();
+        //$this->mock($driver)->call('getDriver')->once();
+           
+    }
+
+    public function testGetWithDriverName()
+    {
+        $driver = new mock\Mactronique\PhpCache\Driver\Driver;
+        $driver->getMockController()->checkDriver = true;
+        $driver->getMockController()->getName = 'test';
+        $driver->getMockController()->get = 'valeur';
+
+        $service = new \Mactronique\PhpCache\Service\PhpCache();
+
+        $this->variable($service->registerDriver($driver))->isNull();
+
+        $this->string($service->get('key', 'test'))->isEqualTo('valeur');
+
+        $this->mock($driver)->call('get')->once();
+        $this->mock($driver)->call('getName')->once();
+           
+    }
+    public function testSet()
+    {
+        $driver = new mock\Mactronique\PhpCache\Driver\Driver;
+        $driver->getMockController()->checkDriver = true;
+        $driver->getMockController()->set = true;
+        $driver->getMockController()->getName = 'test';
+
+        $service = new \Mactronique\PhpCache\Service\PhpCache();
+
+        $this->variable($service->registerDriver($driver))->isNull();
+
+        $this->boolean($service->hasDriver('test'))->isTrue();
+        $this->boolean($service->hasDriver('xCache'))->isFalse();
+
+        $this->boolean($service->set('key', 'valeur'))->isTrue();
+
+        $this->mock($driver)->call('set')->once();
+           
+    }
+}

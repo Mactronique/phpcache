@@ -7,7 +7,7 @@ use mock;
 
 class XcacheDriver extends atoum
 {
-    public function testsName()
+    public function testName()
     {
         $obj = new \Mactronique\PhpCache\Driver\XcacheDriver();
         $this->assert->string($obj->getName())->isEqualTo('xCache');
