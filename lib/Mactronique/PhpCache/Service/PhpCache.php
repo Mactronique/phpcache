@@ -73,7 +73,7 @@ class PhpCache
      */
     public function clean($driverName = null)
     {
-        return $this->getDriver($driverName)->clean($key);
+        return $this->getDriver($driverName)->clean();
     }
 
     /**
@@ -86,7 +86,7 @@ class PhpCache
         }
 
         if (! $this->hasDriver($driverName)) {
-            throw new UnknowDriverException("Error : not loaded driver '".$driver."'");
+            throw new UnknowDriverException("Error : not loaded driver '".$driverName."'");
             
         }
 
