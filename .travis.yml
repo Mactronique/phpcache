@@ -1,0 +1,17 @@
+language: php
+
+php:
+  - 5.4
+  - 5.5
+  - 5.6
+
+services: redis
+
+before_script:
+  - composer self-update
+  - composer update
+  - phpenv --version
+  - phpenv versions
+
+script:
+  - php vendor/atoum/atoum/bin/atoum -d "test/Mactronique/PhpCache/Tests/Units" "-bf" "vendor/autoload.php" "-c" "test/.atoum.php"

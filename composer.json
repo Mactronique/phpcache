@@ -22,7 +22,10 @@
         "ext-xcache": "For use xCache Driver"
     },
     "autoload": {
-        "psr-0": { "": "lib" }
+        "psr-0": {
+            "Mactronique\\PhpCache": "lib",
+            "Mactronique\\PhpCache\\Tests": "test"
+        }
     },
     "extra": {
         "branch-alias": {
