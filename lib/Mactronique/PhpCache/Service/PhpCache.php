@@ -1,6 +1,6 @@
 <?php
 
-namespace Mactronique\PhpCache\Driver\Service;
+namespace Mactronique\PhpCache\Service;
 
 use Mactronique\PhpCache\Driver\Driver;
 use Mactronique\PhpCache\Driver\Exception\UnknowDriverException;
