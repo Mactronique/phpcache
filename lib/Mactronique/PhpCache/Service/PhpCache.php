@@ -13,8 +13,6 @@ class PhpCache
      */
     private $drivers;
 
-    private $default;
-
     public function __construct()
     {
         $this->drivers = [];
