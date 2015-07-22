@@ -16,6 +16,11 @@
     "require-dev": {
         "atoum/atoum": "master-dev"
     },
+    "suggest": {
+        "predis/predis": "For use Predis driver",
+        "ext-redis": "For use Redis Driver",
+        "ext-xcache": "For use xCache Driver"
+    },
     "autoload": {
         "psr-0": { "": "lib" }
     },
