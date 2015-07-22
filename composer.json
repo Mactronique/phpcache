@@ -11,12 +11,10 @@
     ],
     "require": {
         "php": ">=5.4",
-        "symfony/symfony-bundle": ">2.3",
-        "jms/serializer-bundle": "~0.13"
+        "jms/serializer": "~0.13"
     },
     "require-dev": {
-        "atoum/atoum": "master-dev",
-        "atoum/atoum-bundle": "1.1.*@dev"
+        "atoum/atoum": "master-dev"
     },
     "autoload": {
         "psr-0": { "": "lib" }
