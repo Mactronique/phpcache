@@ -48,7 +48,7 @@ $config = array(
 );
 ```
 
-Only 'host' key is required.
+Only `host` key is required.
 
 ## For Redis
 
@@ -62,7 +62,7 @@ $config = array(
 );
 ```
 
-Only 'host' key is required.
+Only `host` key is required.
 
 ## For Redis
 
@@ -74,7 +74,7 @@ $config = array(
 );
 ```
 
-Only 'host' key is required.
+Only `host` key is required.
 
 
 
