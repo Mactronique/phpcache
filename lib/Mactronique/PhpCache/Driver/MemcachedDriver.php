@@ -89,19 +89,32 @@ class MemcachedDriver implements Driver
     {
         if (null === $this->client) {
             $this->client = new Memcached();
+            
+            //Get config
+            $configs = $this->config;
+            $keys = array_keys($configs);
 
-            $host = array_key_exists('host', $this->config)? $this->config['host']:'127.0.0.1';
-            $port = array_key_exists('port', $this->config)? (int)$this->config['port']:11211;
-            $sharing = (array_key_exists('sharing', $this->config))? (int)$this->config['sharing']:100;
-            if ($sharing > 0) {
-                if (!$this->client->addServer($host, $port, $sharing)) {
-                    throw new ServerException("Error Unable to connect to server");
-                }
-            } else {
-                if (!$this->client->addServer($host, $port)) {
-                    throw new ServerException("Error Unable to connect to server");
+            //If only onserver and if the config is in top level, set in new array
+            if (!is_int($keys[0])) {
+                $configs = [$this->config];
+            }
+
+            // Loop for add all server
+            foreach ($$configs as $key => $value) {
+                $host = array_key_exists('host', $this->config)? $this->config['host']:'127.0.0.1';
+                $port = array_key_exists('port', $this->config)? (int)$this->config['port']:11211;
+                $sharing = (array_key_exists('sharing', $this->config))? (int)$this->config['sharing']:100;
+                if ($sharing > 0) {
+                    if (!$this->client->addServer($host, $port, $sharing)) {
+                        throw new ServerException("Error Unable to connect to server");
+                    }
+                } else {
+                    if (!$this->client->addServer($host, $port)) {
+                        throw new ServerException("Error Unable to connect to server");
+                    }
                 }
             }
+            
         }
     }
 }
