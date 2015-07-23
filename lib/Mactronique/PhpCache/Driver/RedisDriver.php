@@ -4,9 +4,9 @@ namespace Mactronique\PhpCache\Driver;
 
 use Mactronique\PhpCache\Exception\DriverRequirementFailException;
 
-class PredisDriver implements Driver
+class RedisDriver implements Driver
 {
-    const NAME = 'Predis';
+    const NAME = 'Redis';
 
     private $config;
 
@@ -19,8 +19,8 @@ class PredisDriver implements Driver
 
     public function checkDriver()
     {
-        if (!class_exists('Predis\Client')) {
-            throw new DriverRequirementFailException("Predis library not installed", self::NAME);
+        if (!class_exists('Redis')) {
+            throw new DriverRequirementFailException("Redis extension not installed", self::NAME);
         }
     }
     
@@ -56,7 +56,7 @@ class PredisDriver implements Driver
     public function set($key, $value, $ttl = null)
     {
         $this->connectServer();
-        return $this->client->setex($keyword, $value, (null === $ttl)? 0:$ttl);
+        return $this->client->set($keyword, $value, (null === $ttl)? 0:$ttl);
     }
 
     /**
@@ -91,27 +91,19 @@ class PredisDriver implements Driver
     private function connectServer()
     {
         if (null === $this->client) {
-            $clientConf = ['host' => $this->config['host']];
+            $host = $this->config['host'];
+            $port = array_key_exists('port', $this->config)? (int)$this->config['port']:6379;
+            $password = (array_key_exists('password', $this->config))? $this->config['password']:'';
+            $database = (array_key_exists('database', $this->config)? (int)$this->config['database']:null);
+            $timeout = (array_key_exists('timeout', $this->config))? (int)$this->config['timeout']:1;
 
-            if (array_key_exists('port', $this->config)) {
-                $clientConf['port'] = $this->config['port'];
-            }
-            if (array_key_exists('password', $this->config)) {
-                $clientConf['password'] = $this->config['password'];
-            }
-            if (array_key_exists('database', $this->config)) {
-                $clientConf['database'] = $this->config['database'];
-            }
-            if (array_key_exists('timeout', $this->config)) {
-                $clientConf['timeout'] = $this->config['timeout'];
-            }
-            if (array_key_exists('read_write_timeout', $this->config)) {
-                $clientConf['read_write_timeout'] = $this->config['read_write_timeout'];
-            }
-
-            $this->client = new Predis\Client($clientConf);
-            if (!$this->client) {
+            $this->client = new Redis();
+            if (!$this->client->connect($host, $port, $timeout)) {
                 throw new \Exception("Error Unable to connect to server");
+            }
+
+            if (null !== $database) {
+                $this->client->select($database);
             }
         }
     }
