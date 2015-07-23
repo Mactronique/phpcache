@@ -63,3 +63,19 @@ $config = array(
 ```
 
 Only 'host' key is required.
+
+## For Redis
+
+```
+$config = array(
+	"host" => "127.0.0.1",
+	"port" => 11211,
+	"sharing" => 100
+);
+```
+
+Only 'host' key is required.
+
+
+
+
