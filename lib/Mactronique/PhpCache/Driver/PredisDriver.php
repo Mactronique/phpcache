@@ -3,6 +3,7 @@
 namespace Mactronique\PhpCache\Driver;
 
 use Mactronique\PhpCache\Exception\DriverRequirementFailException;
+use Mactronique\PhpCache\Exception\ServerException;
 
 class PredisDriver implements Driver
 {
@@ -111,7 +112,7 @@ class PredisDriver implements Driver
 
             $this->client = new Predis\Client($clientConf);
             if (!$this->client) {
-                throw new \Exception("Error Unable to connect to server");
+                throw new ServerException("Error Unable to connect to server");
             }
         }
     }
