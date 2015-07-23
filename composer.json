@@ -1,7 +1,7 @@
 {
     "name": "mactronique/phpcache",
     "description": "Avanced cache manager for PHP. Driver : xcache and wincache",
-    "keyword": ["php", "cache", "wincache", "xcache"],
+    "keyword": ["php", "cache", "wincache", "xcache", "predis", "redis"],
     "license": "MIT",
     "authors": [
         {
