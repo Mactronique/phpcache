@@ -99,6 +99,9 @@ class myService
 
 	public function myAction()
 	{
+		/*
+		You can use the cache but never key exist and all get return null.
+		*/
 		$val = $this->cache->get('key');
 		[...]
 	}
