@@ -13,7 +13,7 @@
 
 ## Install 
 
-```
+``` shell
 php composer.phar require mactronique/phpcache "~1.0"
 ```
 
@@ -37,7 +37,7 @@ No configuration need.
 
 ### For Predis
 
-```
+``` php
 $config = array(
 	"host" => "127.0.0.1",
 	"port" => "",
@@ -52,7 +52,7 @@ Only 'host' key is required.
 
 ## For Redis
 
-```
+``` php
 $config = array(
 	"host" => "127.0.0.1",
 	"port" => "",
@@ -66,7 +66,7 @@ Only 'host' key is required.
 
 ## For Redis
 
-```
+``` php
 $config = array(
 	"host" => "127.0.0.1",
 	"port" => 11211,
