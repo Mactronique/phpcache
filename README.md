@@ -77,5 +77,30 @@ $config = array(
 Only `host` key is required.
 
 
+# Example of use NullDriver
+
+This code is example of service class
+
+``` php
+class myService
+{
+	private $cache
+	public function __construct($cache = null)
+	{
+		if (null === $cache) {
+			$cache = new \Mactronique\PhpCache\Service\PhpCache();
+			$cache->registerDriver(new NullDriver());
+		}
+		$this->cache = $cache;
+	}
+
+	public function myAction()
+	{
+		$val = $this->cache->get('key');
+		[...]
+	}
+}
+
+```
 
 
