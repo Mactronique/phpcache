@@ -82,13 +82,16 @@ Only `host` key is required.
 This code is example of service class
 
 ``` php
+use Mactronique\PhpCache\Service\PhpCache;
+use Mactronique\PhpCache\Driver\NullDriver;
+
 class myService
 {
 	private $cache
-	public function __construct($cache = null)
+	public function __construct(PhpCache $cache = null)
 	{
 		if (null === $cache) {
-			$cache = new \Mactronique\PhpCache\Service\PhpCache();
+			$cache = new PhpCache();
 			$cache->registerDriver(new NullDriver());
 		}
 		$this->cache = $cache;
