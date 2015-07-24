@@ -84,7 +84,7 @@ class PhpCache extends atoum
         $this->string($service->get('key', 'test'))->isEqualTo('valeur');
 
         $this->mock($driver)->call('get')->once();
-        $this->mock($driver)->call('getName')->once();
+        $this->mock($driver)->call('getName')->twice();
            
     }
     public function testSet()
