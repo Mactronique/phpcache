@@ -21,6 +21,9 @@ class PhpCache
 
     public function registerDriver(Driver $driver)
     {
+        if (array_key_exists($driver->getName(), $this->drivers)) {
+            throw new AlreadyRegistredDriverException("Error this driver is already registred", $driver->getName());
+        }
         $driver->checkDriver();
 
         $this->drivers[$driver->getName()] = $driver;
