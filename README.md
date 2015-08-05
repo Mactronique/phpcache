@@ -1,6 +1,7 @@
 # phpcache
 
 [![Build Status](https://travis-ci.org/Mactronique/phpcache.svg?branch=master)](https://travis-ci.org/Mactronique/phpcache)
+[![Dependency Status](https://www.versioneye.com/user/projects/55c2676e653762001a00287f/badge.svg?style=flat)](https://www.versioneye.com/user/projects/55c2676e653762001a00287f)
 
 ## Supported driver
 
