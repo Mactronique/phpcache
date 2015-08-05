@@ -2,6 +2,9 @@
 
 [![Build Status](https://travis-ci.org/Mactronique/phpcache.svg?branch=master)](https://travis-ci.org/Mactronique/phpcache)
 [![Dependency Status](https://www.versioneye.com/user/projects/55c2676e653762001a00287f/badge.svg?style=flat)](https://www.versioneye.com/user/projects/55c2676e653762001a00287f)
+[![Latest Stable Version](https://poser.pugx.org/mactronique/phpcache/v/stable)](https://packagist.org/packages/mactronique/phpcache)
+[![Latest Unstable Version](https://poser.pugx.org/mactronique/phpcache/v/unstable)](https://packagist.org/packages/mactronique/phpcache)
+[![License](https://poser.pugx.org/mactronique/phpcache/license)](https://packagist.org/packages/mactronique/phpcache)
 
 ## Supported driver
 
