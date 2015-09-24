@@ -98,7 +98,7 @@ class RedisDriver implements Driver
             $database = (array_key_exists('database', $this->config)? (int)$this->config['database']:null);
             $timeout = (array_key_exists('timeout', $this->config))? (int)$this->config['timeout']:1;
 
-            $this->client = new Redis();
+            $this->client = new \Redis();
             if (!$this->client->connect($host, $port, $timeout)) {
                 throw new ServerException("Error Unable to connect to server");
             }
