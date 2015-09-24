@@ -67,7 +67,7 @@ class RedisDriver implements Driver
     public function exists($key)
     {
         $this->connectServer();
-        return (null !== $this->client->exists($key));
+        return $this->client->exists($key);
     }
 
     /**
