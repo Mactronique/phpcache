@@ -57,7 +57,10 @@ class RedisDriver implements Driver
     public function set($key, $value, $ttl = null)
     {
         $this->connectServer();
-        return $this->client->set($key, $value, (null === $ttl)? 0:$ttl);
+        $this->client->set($key, $value);
+        if (null !== $ttl) {
+            $this->client->setTimeout($key, $ttl);
+        }
     }
 
     /**
