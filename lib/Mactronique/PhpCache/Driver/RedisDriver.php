@@ -21,10 +21,10 @@ class RedisDriver implements Driver
     public function checkDriver()
     {
         if (!class_exists('Redis')) {
-            throw new DriverRequirementFailException("Redis extension not installed", self::NAME);
+            throw new DriverRequirementFailException('Redis extension not installed', self::NAME);
         }
     }
-    
+
     /**
      * @return string Driver name
      */
@@ -35,6 +35,7 @@ class RedisDriver implements Driver
 
     /**
      * @param string $key
+     *
      * @return mixed
      */
     public function get($key)
@@ -43,15 +44,17 @@ class RedisDriver implements Driver
         $value = $this->client->get($key);
 
         if ($value == false) {
-            return null;
+            return;
         }
+
         return $value;
     }
 
     /**
      * @param string $key
-     * @param mixed $value
-     * @param integer $ttl
+     * @param mixed  $value
+     * @param int    $ttl
+     *
      * @return mixed
      */
     public function set($key, $value, $ttl = null)
@@ -65,11 +68,13 @@ class RedisDriver implements Driver
 
     /**
      * @param string $key
-     * @return boolean
+     *
+     * @return bool
      */
     public function exists($key)
     {
         $this->connectServer();
+
         return $this->client->exists($key);
     }
 
@@ -79,16 +84,18 @@ class RedisDriver implements Driver
     public function remove($key)
     {
         $this->connectServer();
+
         return $this->client->delete($key);
     }
 
     /**
-     * Remove all keys and value from cache
+     * Remove all keys and value from cache.
      */
     public function clean()
     {
         $this->connectServer();
         $this->client->flushDB();
+
         return true;
     }
 
@@ -96,14 +103,14 @@ class RedisDriver implements Driver
     {
         if (null === $this->client) {
             $host = $this->config['host'];
-            $port = array_key_exists('port', $this->config)? (int)$this->config['port']:6379;
-            $password = (array_key_exists('password', $this->config))? $this->config['password']:'';
-            $database = (array_key_exists('database', $this->config)? (int)$this->config['database']:null);
-            $timeout = (array_key_exists('timeout', $this->config))? (int)$this->config['timeout']:1;
+            $port = array_key_exists('port', $this->config) ? (int) $this->config['port'] : 6379;
+            $password = (array_key_exists('password', $this->config)) ? $this->config['password'] : '';
+            $database = (array_key_exists('database', $this->config) ? (int) $this->config['database'] : null);
+            $timeout = (array_key_exists('timeout', $this->config)) ? (int) $this->config['timeout'] : 1;
 
             $this->client = new \Redis();
             if (!$this->client->connect($host, $port, $timeout)) {
-                throw new ServerException("Error Unable to connect to server");
+                throw new ServerException('Error Unable to connect to server');
             }
 
             if (null !== $database) {
