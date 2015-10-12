@@ -113,6 +113,10 @@ class RedisDriver implements Driver
                 throw new ServerException('Error Unable to connect to server');
             }
 
+            if (!empty($password)) {
+                $this->client->auth($password);
+            }
+
             if (null !== $database) {
                 $this->client->select($database);
             }
