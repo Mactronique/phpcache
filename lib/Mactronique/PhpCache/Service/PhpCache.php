@@ -51,7 +51,7 @@ class PhpCache
      */
     public function set($key, $value, $ttl = null, $driverName = null)
     {
-        return $this->getDriver($driverName)->set($key, $value, $ttl = null);
+        return $this->getDriver($driverName)->set($key, $value, $ttl);
     }
 
     /**
